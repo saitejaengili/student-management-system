@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Student Management{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="{% url 'dashboard' %}"><span class="brand-mark">S</span><span>Student<span class="brand-light">Desk</span></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-link active" href="{% url 'dashboard' %}"><span>▦</span> Dashboard</a>
+      <a class="nav-link" href="{% url 'student_add' %}"><span>＋</span> Add student</a>
+      <div class="sidebar-bottom"><div class="avatar">AD</div><div><strong>Administrator</strong><small>Management portal</small></div></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><span class="eyebrow">STUDENT PORTAL</span><h1>{% block heading %}Dashboard{% endblock %}</h1></div><a class="button button-primary" href="{% url 'student_add' %}">＋ Add student</a></header>
+      {% if messages %}<div class="messages">{% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+      {% block content %}{% endblock %}
+      <footer>StudentDesk <span>•</span> Built with Django and PostgreSQL</footer>
+    </main>
+  </div>
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
